@@ -1,2 +1,32 @@
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
+
+<% if current_user %>
+  <%= link_to "New Post", new_post_path %>
+  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Log in", new_user_session_path %>
+  <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
+
+<h2>Post Feed</h2>
+
+<table>
+  <th>Users</th>
+  <th>Posts Title</th>
+  <th>Posts Text</th>
+  <th>Comments</th>
+</table>
+
+  <% @posts.each do |post| %>
+
+<table>
+  <tr>
+    <td><%= post.user.email.split('@')[0].capitalize %></td>
+    <td><%= post.title %></td>
+    <td><%= post.text %></td>
+    <td>Comments</td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+  </tr>
+</table>
+  <% end %>
