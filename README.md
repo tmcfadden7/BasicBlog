@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -27,3 +28,7 @@ Things you may want to cover:
 # BasicBlog
 PRACTICE
 >>>>>>> 7c0dcf4e4cf642eeb7f73bcffd36a77dff149c38
+=======
+# BasicBlog
+PRACTICE
+>>>>>>> f1f557932d823d64cf53d1e7ad186e2cf62ac768
