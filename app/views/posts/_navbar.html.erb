@@ -6,42 +6,45 @@
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <!-- SOMEHOW THIS LINE IS KEEPING DROPDOWN TO THE RIGHT -->
     <ul class="navbar-nav mr-auto">
-
-      <% if current_user %>
-      <li class="nav-item">
-        <a class="nav-link navbar-brand text-light" href="#">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link navbar-brand text-light" href="/users/sign_out">Log out</a>
-      </li>
-      <% else %>
-      <li class="nav-item">
-        <a class="nav-link navbar-brand text-light" href="/users/sign_in">Log in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link navbar-brand text-light" href="/users/sign_up">Sign up</a>
-      </li>
-      <% end %>
-
-
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> -->
     </ul>
+
+
+
+    <% if user_signed_in? %>
+    <div class="nav-item dropdown">
+      <a class="nav-link navbar-brand dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email.split('@')[0].capitalize %>
+      </a>
+
+
+      <% else %>
+        <a class="nav-link navbar-brand" href="/users/sign_in">Log in<span class="sr-only">(current)</span></a>
+
+        <a class="nav-link navbar-brand" href="/users/sign_up">Sign up<span class="sr-only">(current)</span></a>
+
+      <div class="nav-item dropdown">
+        <a class="nav-link navbar-brand dropdown-toggle" href="/users/sign_in" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More
+        </a>
+
+      <% end %>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <% if current_user %>
+        <a class="dropdown-item" href="/users/edit">Profile</a>
+        <a class="dropdown-item" href="/users/sign_up"><%= link_to 'Log out', destroy_user_session_path, method: :delete %></a>
+        <% else %>
+        <a class="dropdown-item" href="">Sign up</a>
+        <% end %>
+      </div>
+    </div>
 
 
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
+
+
   </div>
 </nav>
