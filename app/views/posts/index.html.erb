@@ -1,4 +1,6 @@
 
+
+
 <% if current_user %>
   <h2>Welcome back <%= current_user.email.split('@')[0].capitalize %> to BLOG!</h2>
   <%= link_to "New Post", new_post_path %>
@@ -6,9 +8,11 @@
   <h2>Welcome to BLOG!</h2>
 <% end %>
 
+<div class="container">
+
 <h2>Post Feed</h2>
 
-<table>
+<table class="col">
   <th>Users</th>
   <th>Posts Title</th>
   <th>Posts Text</th>
@@ -17,7 +21,7 @@
 
   <% @posts.each do |post| %>
 
-<table>
+<table class="col text-justify">
   <tr>
     <td><%= post.user.email.split('@')[0].capitalize %></td>
     <td><%= post.title %></td>
@@ -27,3 +31,4 @@
   </tr>
 </table>
   <% end %>
+  </div>
