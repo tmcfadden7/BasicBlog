@@ -1,34 +1,37 @@
+<div class="container-fluid">
+  <% if current_user %>
+    <h2>Welcome back <%= current_user.email.split('@')[0].capitalize %> to BLOG!</h2>
+    <a href="/posts/new" class="badge badge-info">New Post</a>
+  <% else %>
+    <h2>Welcome to BLOG!</h2>
+  <% end %>
+</div>
 
-
-
-<% if current_user %>
-  <h2>Welcome back <%= current_user.email.split('@')[0].capitalize %> to BLOG!</h2>
-  <%= link_to "New Post", new_post_path %>
-<% else %>
-  <h2>Welcome to BLOG!</h2>
-<% end %>
-
-<div class="container">
-
-<h2>Post Feed</h2>
-
-<table class="col">
-  <th>Users</th>
-  <th>Posts Title</th>
-  <th>Posts Text</th>
-  <th>Comments</th>
-</table>
+<h2 class="container text-info">Blog Feed</h2>
 
   <% @posts.each do |post| %>
 
-<table class="col text-justify">
-  <tr>
-    <td><%= post.user.email.split('@')[0].capitalize %></td>
-    <td><%= post.title %></td>
-    <td><%= post.text %></td>
-    <td>Comments</td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-  </tr>
-</table>
-  <% end %>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+
+  <div class="card border-info mb-3" style="max-width: 18rem;">
+    <img class="card-img-top" src="https://via.placeholder.com/350x150" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.text %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Genre: </li>
+      <li class="list-group-item">Personal Rating: </li>
+      <li class="list-group-item">User: <%= post.user.email.split('@')[0].capitalize %></li>
+    </ul>
+    <div class="card-body">
+      <p><%= render "comments/form" %></p>
+      <%= link_to 'Edit', edit_post_path(post) %>
+    </div>
+    </div>
   </div>
+</div>
+</div>
+<% end %>
