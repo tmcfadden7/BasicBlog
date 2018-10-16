@@ -32,7 +32,7 @@
 
 
 <div class="container">
-<h1><%= current_user.email.split('@')[0].capitalize %> Post</h1>
+<h3><%= current_user.email.split('@')[0].capitalize %> Post</h3>
 
 <%= form_with model: @post, local: true do |form| %>
 
@@ -50,63 +50,44 @@
     </div>
   <% end %>
 
+
+  <h4><%= form.label :title %></h4>
   <p>
-    <%= form.label :title %><br>
     <%= form.text_field :title %>
   </p>
 
+  <h4><%= form.label :description %><br></h4>
   <p>
-    <%= form.label :text %><br>
     <%= form.text_area :text %>
   </p>
 
-  <!-- <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-  <label class="form-check-label" for="exampleRadios1">
-    Movie
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  <label class="form-check-label" for="exampleRadios2">
-    Book
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-  <label class="form-check-label" for="exampleRadios3">
-    Album
-  </label>
-</div>
+  <h4><%= form.label :genre%></h4>
+  <p>
+    <%= check_box_tag :genre, "Book"  %>
+    <%= form.label :book %>
+  </p>
+
+  <p>
+    <%= check_box_tag :genre %>
+    <%= form.label(:genre, "Movie") %>
+  </p>
+
+  <p>
+    <%= check_box_tag :genre %>
+    <%= form.label(:genre, "Album") %>
+  </p>
 
 
-
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-  <label class="form-check-label" for="exampleRadios4">
-    Other
-  </label>
-</div>
-
-<form>
-  <div class="form-group col-4">
-    <label for="formGroupExampleInput"></label>
-    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Please explain">
-  </div>
-</form>
-
-<p>Give it a rating!</p>
+<!-- <p>Give it a rating!</p>
 
 <div class="slidecontainer">
   <input type="range" min="1" max="10" value="10" class="slider" id="myRange">
   <p>Rating: <span id="demo"></span></p>
-</div> -->
+</div>
 
-<p>
-  <%= form.submit %>
-</p>
 
-<!-- <script>
+
+<script>
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
 output.innerHTML = slider.value;
@@ -116,7 +97,9 @@ slider.oninput = function() {
 }
 </script> -->
 
-
+<p>
+  <%= form.submit %>
+</p>
 
 
 <% end %>
