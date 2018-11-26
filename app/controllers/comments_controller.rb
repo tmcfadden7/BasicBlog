@@ -18,13 +18,9 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
-
-    if @comment.save
-      redirect_to post_path
-    else
-      render 'edit'
-    end
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create(params[:comment])
+    redirect_to post_path(@post)
   end
 
   def update
@@ -35,16 +31,19 @@ class CommentsController < ApplicationController
     else
       render 'edit'
   end
+end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
     @comment.destroy
-
-    redirect_to post_path
+    redirect_to post_path(@post)
+ end
   end
 
+private
   def comment_params
-
+    params.require(:comment).permit(:commenter, :body)
   end
 
 end
