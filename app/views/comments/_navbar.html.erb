@@ -1,0 +1,50 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
+  <a class="navbar-brand" href="/posts">BLOG</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <!-- SOMEHOW THIS LINE IS KEEPING DROPDOWN TO THE RIGHT -->
+    <ul class="navbar-nav mr-auto">
+    </ul>
+
+
+
+    <% if user_signed_in? %>
+    <div class="nav-item dropdown">
+      <a class="nav-link navbar-brand dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email.split('@')[0].capitalize %>
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+        <a class="dropdown-item" href="/users/edit">Profile</a>
+        <a class="dropdown-item navbar-text" href="/users/sign_up"><%= link_to 'Log out', destroy_user_session_path, method: :delete %></a>
+      </div>
+
+
+        <% else %>
+
+        <a class="nav-link navbar-brand" href="/users/sign_in">Log in<span class="sr-only">(current)</span></a>
+
+        <a class="nav-link navbar-brand" href="/users/sign_up">Sign up<span class="sr-only">(current)</span></a>
+
+
+
+
+        <% end %>
+      </div>
+
+
+
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+
+  </div>
+</nav>

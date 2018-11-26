@@ -1,12 +1,22 @@
+<div class="container">
 <%= form_with(model: @post, local: true) do |form| %>
-  <p>
-    <%= current_user.email %>
-  </p>
+
+  <% if user_signed_in? %>
+    <p>
+      <%= current_user.email %>
+    </p>
+    <p>
+      <%= form.label :comment %><br>
+      <%= form.text_area :body %>
+    </p>
+  <% else %>
   <p>
     <%= form.label :comment %><br>
     <%= form.text_area :body %>
   </p>
+  <% end %>
   <p>
     <%= form.submit %>
   </p>
 <% end %>
+</div>

@@ -28,10 +28,15 @@
     background: #464a4c;
     cursor: pointer;
 }
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
 </style>
 
 
-<div class="container">
+<div class="container text-center">
 <h3><%= current_user.email.split('@')[0].capitalize %> Post</h3>
 
 <%= form_with model: @post, local: true do |form| %>
@@ -49,58 +54,34 @@
       </ul>
     </div>
   <% end %>
-
-
-  <h4><%= form.label :title %></h4>
-  <p>
-    <%= form.text_field :title %>
-  </p>
-
-  <h4><%= form.label :description %><br></h4>
-  <p>
-    <%= form.text_area :text %>
-  </p>
-
-  <h4><%= form.label :genre%></h4>
-  <p>
-    <%= check_box_tag :genre, "Book"  %>
-    <%= form.label :book %>
-  </p>
-
-  <p>
-    <%= check_box_tag :genre %>
-    <%= form.label(:genre, "Movie") %>
-  </p>
-
-  <p>
-    <%= check_box_tag :genre %>
-    <%= form.label(:genre, "Album") %>
-  </p>
-
-
-<!-- <p>Give it a rating!</p>
-
-<div class="slidecontainer">
-  <input type="range" min="1" max="10" value="10" class="slider" id="myRange">
-  <p>Rating: <span id="demo"></span></p>
 </div>
+<div class="container text-center">
+  <div class="card border-info mb-3" style="max-width: 18rem;">
+    <h4><%= form.label :title %></h4>
+    <p>
+      <%= form.text_field :title %>
+    </p>
 
+    <h4><%= form.label :genre%></h4>
+    <p>
+      <%= form.text_field :genre %>
+    </p>
 
+    <h4><%= form.label :description %><br></h4>
+    <p>
+      <%= form.text_area :text %>
+    </p>
 
-<script>
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value;
+    <h4><%= form.label :rating %></h4>
+    <p>
+      <%= form.number_field :rating, in: 1..10 %>
+    </p>
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
-</script> -->
 
 <p>
   <%= form.submit %>
 </p>
 
-
+</div>
 <% end %>
 </div>

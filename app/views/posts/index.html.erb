@@ -1,4 +1,13 @@
-<div class="container-fluid">
+<style>
+
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+</style>
+
+<div class="container-fluid text-center">
   <% if current_user %>
     <h2>Welcome back <%= current_user.email.split('@')[0].capitalize %> to BLOG!</h2>
     <a href="/posts/new" class="badge badge-info">New Post</a>
@@ -7,34 +16,30 @@
   <% end %>
 </div>
 
-<h2 class="container text-info">Blog Feed</h2>
+<h2 class="container text-info text-center">Blog Feed</h2>
 
   <% @posts.each do |post| %>
 
   <div class="container">
-  <div class="row">
-    <div class="col-md-6">
+    <div class="card border-info mb-3" style="max-width: 18rem;">
+      <img class="card-img-top" src="https://via.placeholder.com/350x150" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%= post.text %></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Genre: <%= post.genre %> </li>
+        <li class="list-group-item">Rating: <%= post.rating %></li>
+        <li class="list-group-item">User: <%= post.user.email.split('@')[0].capitalize %></li>
+      </ul>
+      <div class="card-body">
+        <p><%= render "comments/form" %></p>
 
-  <div class="card border-info mb-3" style="max-width: 18rem;">
-    <img class="card-img-top" src="https://via.placeholder.com/350x150" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title"><%= post.title %></h5>
-      <p class="card-text"><%= post.text %></p>
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to'Destroy', post_path(post),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+      </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Genre: <%= post.genre %> </li>
-      <li class="list-group-item">Personal Rating: <%= post.rating %></li>
-      <li class="list-group-item">User: <%= post.user.email.split('@')[0].capitalize %></li>
-    </ul>
-    <div class="card-body">
-      <p><%= render "comments/form" %></p>
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to'Destroy', post_path(post),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
-    </div>
-    </div>
-  </div>
-</div>
 </div>
 <% end %>

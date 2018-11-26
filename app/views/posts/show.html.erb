@@ -1,5 +1,15 @@
+<style>
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+</style>
+
+<div class="container text-center">
 <h1><%= current_user.email.split('@')[0].capitalize %> Post</h1>
 
+  <div class="card border-info mb-3" style="max-width: 18rem;">
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
@@ -25,3 +35,5 @@
   <%= link_to 'Edit', edit_post_path(@post) %> |
 <% end %>
 <%= link_to 'Back', posts_path %>
+</div>
+</div>
